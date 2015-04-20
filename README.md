@@ -7,6 +7,8 @@ No ads.
 
 # Changelog
 
+To complete
+
 # Permission Explanation
 
 To complete
