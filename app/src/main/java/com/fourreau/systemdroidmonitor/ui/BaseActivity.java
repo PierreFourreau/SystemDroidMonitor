@@ -1,4 +1,4 @@
-package com.fourreau.systemdroidmonitor;
+package com.fourreau.systemdroidmonitor.ui;
 
 import android.app.Activity;
 import android.os.Build;
@@ -8,12 +8,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.ui.fragment.DisplayFragment;
+import com.fourreau.systemdroidmonitor.ui.fragment.SummaryFragment;
+import com.fourreau.systemdroidmonitor.ui.fragment.SystemFragment;
+
+import timber.log.Timber;
 
 
 public class BaseActivity extends ActionBarActivity
@@ -44,17 +50,27 @@ public class BaseActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        Log.d(TAG, Build.VERSION.RELEASE);
-        Log.d(TAG, "foo");
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment;
+        FragmentManager fragmentManager = getSupportFragmentManager(); // For AppCompat use getSupportFragmentManager
+        switch(position) {
+            default:
+            case 0:
+                fragment = new SummaryFragment();
+                break;
+            case 1:
+                fragment = new SystemFragment();
+                break;
+            case 2:
+                fragment = new DisplayFragment();
+                break;
+        }
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, fragment)
                 .commit();
     }
 

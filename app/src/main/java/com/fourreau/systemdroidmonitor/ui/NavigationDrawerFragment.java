@@ -1,4 +1,4 @@
-package com.fourreau.systemdroidmonitor;
+package com.fourreau.systemdroidmonitor.ui;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -21,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.fourreau.systemdroidmonitor.R;
 
 
 /**
