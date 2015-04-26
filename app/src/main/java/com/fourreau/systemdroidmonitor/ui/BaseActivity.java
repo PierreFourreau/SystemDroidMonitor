@@ -1,7 +1,6 @@
 package com.fourreau.systemdroidmonitor.ui;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,17 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.ui.fragment.BatteryFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.DisplayFragment;
+import com.fourreau.systemdroidmonitor.ui.fragment.MemoryFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.SummaryFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.SystemFragment;
-
-import timber.log.Timber;
 
 
 public class BaseActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
-    private static final String TAG = BaseActivity.class.getName();
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -68,6 +65,12 @@ public class BaseActivity extends ActionBarActivity
             case 2:
                 fragment = new DisplayFragment();
                 break;
+            case 3:
+                fragment = new BatteryFragment();
+                break;
+            case 4:
+                fragment = new MemoryFragment();
+                break;
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
@@ -84,6 +87,12 @@ public class BaseActivity extends ActionBarActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_section5);
                 break;
         }
     }

@@ -4,6 +4,8 @@
     <string name="title_section1">Summary</string>
     <string name="title_section2">System</string>
     <string name="title_section3">Display</string>
+    <string name="title_section4">Battery</string>
+    <string name="title_section5">Memory</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,9 +14,9 @@
 
     <string name="action_settings">Settings</string>
 
-<!-- TODO: Remove or change this placeholder text -->
     <string name="summary">Summary</string>
-
     <string name="system">System</string>
     <string name="display">Display</string>
+    <string name="battery">Battery</string>
+    <string name="memory">Memory</string>
 </resources>
