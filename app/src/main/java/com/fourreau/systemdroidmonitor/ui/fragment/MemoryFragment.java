@@ -3,6 +3,7 @@ package com.fourreau.systemdroidmonitor.ui.fragment;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,12 +15,11 @@ import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.BaseActivity;
+import com.fourreau.systemdroidmonitor.ui.graph.PieGraph;
+import com.fourreau.systemdroidmonitor.ui.graph.PieSlice;
 import com.fourreau.systemdroidmonitor.util.UiUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 import timber.log.Timber;
 
@@ -31,14 +31,29 @@ public class MemoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View view = inflater.inflate(R.layout.fragment_memory, container, false);
+
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
         activityManager.getMemoryInfo(mi);
 
-        if(Build.VERSION.SDK_INT >= 16 ){
-        // percentage can be calculated for API 16+
-            Long percentageAvailaible = (long)((float)mi.availMem/mi.totalMem*100);
+        if(Build.VERSION.SDK_INT >= 16 ) {
+            // percentage can be calculated for API 16+
+            Long percentageAvailaible = (long) ((float) mi.availMem / mi.totalMem * 100);
             Timber.d("percent available : " + percentageAvailaible + "%");
+
+
+            PieGraph pg = (PieGraph) view.findViewById(R.id.graph);
+            PieSlice slice = new PieSlice();
+            slice.setTitle("Total memory");
+            slice.setColor(Color.parseColor("#AA66CC"));
+            slice.setValue(mi.totalMem);
+            pg.addSlice(slice);
+            slice = new PieSlice();
+            slice.setTitle("Available memory");
+            slice.setColor(Color.parseColor("#FFBB33"));
+            slice.setValue(mi.availMem);
+            pg.addSlice(slice);
         }
 
         //System
@@ -54,8 +69,8 @@ public class MemoryFragment extends Fragment {
         Timber.d("Available external memory size : "+getAvailableExternalMemorySize());
         Timber.d("Total external memory size : "+getTotalExternalMemorySize());
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_memory, container, false);
+
+        return view;
     }
 
     public static boolean externalMemoryAvailable() {
