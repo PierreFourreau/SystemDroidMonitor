@@ -19,4 +19,10 @@
     <string name="display">Display</string>
     <string name="battery">Battery</string>
     <string name="memory">Memory</string>
+
+
+    <string name="used_memory">Available memory</string>
+    <string name="available_memory">Used memory</string>
+
+
 </resources>

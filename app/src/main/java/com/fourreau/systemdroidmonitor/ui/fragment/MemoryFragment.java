@@ -37,7 +37,7 @@ public class MemoryFragment extends Fragment {
         ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
         activityManager.getMemoryInfo(mi);
 
-        if(Build.VERSION.SDK_INT >= 16 ) {
+        if (Build.VERSION.SDK_INT >= 16) {
             // percentage can be calculated for API 16+
             Long percentageAvailaible = (long) ((float) mi.availMem / mi.totalMem * 100);
             Timber.d("percent available : " + percentageAvailaible + "%");
@@ -45,29 +45,29 @@ public class MemoryFragment extends Fragment {
 
             PieGraph pg = (PieGraph) view.findViewById(R.id.graph);
             PieSlice slice = new PieSlice();
-            slice.setTitle("Total memory");
+            slice.setTitle(getString(R.string.used_memory));
             slice.setColor(Color.parseColor("#AA66CC"));
-            slice.setValue(mi.totalMem);
+            slice.setValue(mi.totalMem - mi.availMem);
             pg.addSlice(slice);
             slice = new PieSlice();
-            slice.setTitle("Available memory");
+            slice.setTitle(getString(R.string.available_memory));
             slice.setColor(Color.parseColor("#FFBB33"));
             slice.setValue(mi.availMem);
             pg.addSlice(slice);
         }
 
         //System
-        Timber.d("Total memory"+ UiUtils.humanReadableByteCount(mi.totalMem, true));
-        Timber.d("Available memory "+UiUtils.humanReadableByteCount(mi.availMem , true));
-        Timber.d("Low memory "+mi.lowMemory);
-        Timber.d("Threshold memory "+ UiUtils.humanReadableByteCount(mi.threshold, true) );
+        Timber.d("Total memory" + UiUtils.humanReadableByteCount(mi.totalMem, true));
+        Timber.d("Available memory " + UiUtils.humanReadableByteCount(mi.availMem, true));
+        Timber.d("Low memory " + mi.lowMemory);
+        Timber.d("Threshold memory " + UiUtils.humanReadableByteCount(mi.threshold, true));
 
         //Storage
-        Timber.d("External memory : "+externalMemoryAvailable());
-        Timber.d("Available internal memory size : "+getAvailableInternalMemorySize());
-        Timber.d("Total internal memory size : "+getTotalInternalMemorySize());
-        Timber.d("Available external memory size : "+getAvailableExternalMemorySize());
-        Timber.d("Total external memory size : "+getTotalExternalMemorySize());
+        Timber.d("External memory : " + externalMemoryAvailable());
+        Timber.d("Available internal memory size : " + getAvailableInternalMemorySize());
+        Timber.d("Total internal memory size : " + getTotalInternalMemorySize());
+        Timber.d("Available external memory size : " + getAvailableExternalMemorySize());
+        Timber.d("Total external memory size : " + getTotalExternalMemorySize());
 
 
         return view;
@@ -148,7 +148,8 @@ public class MemoryFragment extends Fragment {
         ((BaseActivity) activity).onSectionAttached(5);
     }
 
-    @Override public void onResume() {
+    @Override
+    public void onResume() {
         super.onResume();
     }
 }
