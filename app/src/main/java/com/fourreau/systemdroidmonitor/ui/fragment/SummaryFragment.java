@@ -1,18 +1,15 @@
 package com.fourreau.systemdroidmonitor.ui.fragment;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
-import com.fourreau.systemdroidmonitor.util.UiUtils;
-
-import java.util.Calendar;
-import java.util.Date;
+import com.fourreau.systemdroidmonitor.ui.BaseActivity;
 
 import timber.log.Timber;
 
@@ -37,6 +34,12 @@ public class SummaryFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_summary, container, false);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((BaseActivity) activity).onSectionAttached(1);
     }
 
     @Override public void onResume() {

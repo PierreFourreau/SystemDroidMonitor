@@ -1,5 +1,6 @@
 package com.fourreau.systemdroidmonitor.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.ui.BaseActivity;
 
 import timber.log.Timber;
 
@@ -36,6 +38,12 @@ public class SystemFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_system, container, false);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((BaseActivity) activity).onSectionAttached(2);
     }
 
     @Override public void onResume() {

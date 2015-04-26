@@ -1,5 +1,6 @@
 package com.fourreau.systemdroidmonitor.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.ui.BaseActivity;
 
 import timber.log.Timber;
 
@@ -41,6 +43,12 @@ import timber.log.Timber;
             // Inflate the layout for this fragment
             return inflater.inflate(R.layout.fragment_display, container, false);
         }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((BaseActivity) activity).onSectionAttached(3);
+    }
 
         @Override public void onResume() {
             super.onResume();
