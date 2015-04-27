@@ -36,10 +36,26 @@ public class MemoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_memory, container, false);
 
         //get elements
+        PieGraph pg = (PieGraph) view.findViewById(R.id.graph);
+        //ram
+        TextView textViewRamTotalLabel = (TextView) view.findViewById(R.id.textview_memory_used_ram_label);
+        TextView textViewRamUsedLabel = (TextView) view.findViewById(R.id.textview_memory_used_ram_label);
         TextView textViewRamTotal = (TextView) view.findViewById(R.id.textview_memory_total_ram);
         TextView textViewRamAvailable = (TextView) view.findViewById(R.id.textview_memory_available_ram);
+        TextView textview_memory_percentage_ram_label = (TextView) view.findViewById(R.id.textview_memory_percentage_ram_label);
+        TextView textview_memory_percentage_ram = (TextView) view.findViewById(R.id.textview_memory_percentage_ram);
+
+        TextView textViewRamUsed = (TextView) view.findViewById(R.id.textview_memory_used_ram);
         TextView textViewRamLow = (TextView) view.findViewById(R.id.textview_memory_low_ram);
         TextView textViewRamThreshold = (TextView) view.findViewById(R.id.textview_memory_threshold_ram);
+        //storage
+        TextView textViewStorageAvailableExternal = (TextView) view.findViewById(R.id.textview_memory_available_external);
+        TextView textViewStorageAvailableInternal = (TextView) view.findViewById(R.id.textview_memory_available_internal);
+        TextView textViewStorageExternalStoragePresent = (TextView) view.findViewById(R.id.textview_memory_external_storage);
+        TextView textViewStorageTotalExternal = (TextView) view.findViewById(R.id.textview_memory_total_external);
+        TextView textViewStorageTotalInternal = (TextView) view.findViewById(R.id.textview_memory_total_internal);
+
+
 
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
@@ -50,8 +66,8 @@ public class MemoryFragment extends Fragment {
             Long percentageAvailaible = (long) ((float) mi.availMem / mi.totalMem * 100);
             Timber.d("percent available : " + percentageAvailaible + "%");
 
+            Timber.d("Total memory" + UiUtils.humanReadableByteCount(mi.totalMem, true));
 
-            PieGraph pg = (PieGraph) view.findViewById(R.id.graph);
             PieSlice slice = new PieSlice();
             slice.setTitle(getString(R.string.memory_used_ram));
             slice.setColor(Color.parseColor("#AA66CC"));
@@ -62,10 +78,37 @@ public class MemoryFragment extends Fragment {
             slice.setColor(Color.parseColor("#FFBB33"));
             slice.setValue(mi.availMem);
             pg.addSlice(slice);
+
+            //ram
+            textViewRamTotal.setText(UiUtils.humanReadableByteCount(mi.totalMem, true));
+            textViewRamUsed.setText(UiUtils.humanReadableByteCount(mi.totalMem - mi.availMem, true));
+            textview_memory_percentage_ram.setText(percentageAvailaible + " %");
+        }
+        else {
+            pg.setVisibility(View.GONE);
+            textview_memory_percentage_ram_label.setVisibility(View.GONE);
+            textview_memory_percentage_ram.setVisibility(View.GONE);
+            textViewRamTotalLabel.setVisibility(View.GONE);
+            textViewRamUsedLabel.setVisibility(View.GONE);
+            textViewRamTotal.setVisibility(View.GONE);
+            textViewRamUsed.setVisibility(View.GONE);
         }
 
+
+        //set elements
+        //ram
+        textViewRamAvailable.setText(UiUtils.humanReadableByteCount(mi.availMem, true));
+        textViewRamLow.setText(Boolean.toString(mi.lowMemory));
+        textViewRamThreshold.setText(UiUtils.humanReadableByteCount(mi.threshold, true));
+        //storage
+        textViewStorageAvailableExternal.setText(getAvailableExternalMemorySize());
+        textViewStorageAvailableInternal.setText(getAvailableInternalMemorySize());
+        textViewStorageExternalStoragePresent.setText(Boolean.toString(externalMemoryAvailable()));
+        textViewStorageTotalExternal.setText(getTotalExternalMemorySize());
+        textViewStorageTotalInternal.setText(getTotalInternalMemorySize());
+
+
         //System
-        Timber.d("Total memory" + UiUtils.humanReadableByteCount(mi.totalMem, true));
         Timber.d("Available memory " + UiUtils.humanReadableByteCount(mi.availMem, true));
         Timber.d("Low memory " + mi.lowMemory);
         Timber.d("Threshold memory " + UiUtils.humanReadableByteCount(mi.threshold, true));
@@ -77,11 +120,6 @@ public class MemoryFragment extends Fragment {
         Timber.d("Available external memory size : " + getAvailableExternalMemorySize());
         Timber.d("Total external memory size : " + getTotalExternalMemorySize());
 
-        //set elements
-        textViewRamTotal.setText(UiUtils.humanReadableByteCount(mi.totalMem, true));
-        textViewRamAvailable.setText(UiUtils.humanReadableByteCount(mi.availMem, true));
-        textViewRamLow.setText(Boolean.toString(mi.lowMemory));
-        textViewRamThreshold.setText(UiUtils.humanReadableByteCount(mi.threshold, true));
 
         return view;
     }
