@@ -173,10 +173,10 @@ public class MemoryFragment extends Fragment {
         String suffix = null;
 
         if (size >= 1024) {
-            suffix = "KB";
+            suffix = " KB";
             size /= 1024;
             if (size >= 1024) {
-                suffix = "MB";
+                suffix = " MB";
                 size /= 1024;
             }
         }

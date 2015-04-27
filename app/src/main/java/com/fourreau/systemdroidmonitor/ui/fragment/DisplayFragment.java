@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
@@ -16,33 +17,61 @@ import timber.log.Timber;
 /**
  * Created by Pierre on 25/04/2015.
  */
-    public class DisplayFragment extends Fragment {
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+public class DisplayFragment extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        View view = inflater.inflate(R.layout.fragment_display, container, false);
 
-            Timber.d("density: "+metrics.density);
-            Timber.d("densityDpi: " + metrics.densityDpi);
-            Timber.d("scaledDensity: " + metrics.scaledDensity);
-            Timber.d("xdpi: " + metrics.xdpi);
-            Timber.d("ydpi: " + metrics.ydpi);
+        //get elements
+        TextView textViewDisplayDensity = (TextView) view.findViewById(R.id.textview_display_density);
+        TextView textViewDisplayDensityDpi = (TextView) view.findViewById(R.id.textview_display_density_dpi);
+        TextView textViewDisplayDensityScaled = (TextView) view.findViewById(R.id.textview_display_density_scaled);
+        TextView textViewDisplayDensityXdpi = (TextView) view.findViewById(R.id.textview_display_xdpi);
+        TextView textViewDisplayDensityYdpi = (TextView) view.findViewById(R.id.textview_display_ydpi);
+        TextView textViewDisplayDensityDefault = (TextView) view.findViewById(R.id.textview_display_density_default);
+        TextView textViewDisplayDensityLow = (TextView) view.findViewById(R.id.textview_display_density_low);
+        TextView textViewDisplayDensityMedium = (TextView) view.findViewById(R.id.textview_display_density_medium);
+        TextView textViewDisplayDensityHigh = (TextView) view.findViewById(R.id.textview_display_density_high);
+        TextView textViewDisplayHeight = (TextView) view.findViewById(R.id.textview_display_height);
+        TextView textViewDisplayWidth = (TextView) view.findViewById(R.id.textview_display_width);
 
-            Timber.d("** Density reference:");
-            Timber.d("DENSITY_DEFAULT: " + DisplayMetrics.DENSITY_DEFAULT);
-            Timber.d("DENSITY_LOW: " + DisplayMetrics.DENSITY_LOW);
-            Timber.d("DENSITY_MEDIUM: " + DisplayMetrics.DENSITY_MEDIUM);
-            Timber.d("DENSITY_HIGH: " + DisplayMetrics.DENSITY_HIGH);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-            Timber.d("** Screen:");
-            Timber.d("heightPixels: " + metrics.heightPixels);
-            Timber.d("widthPixels: "+metrics.widthPixels);
+        //set elements
+        textViewDisplayDensity.setText(""+metrics.density);
+        textViewDisplayDensityDpi.setText(""+metrics.densityDpi);
+        textViewDisplayDensityScaled.setText(""+metrics.scaledDensity);
+        textViewDisplayDensityXdpi.setText(""+metrics.xdpi);
+        textViewDisplayDensityYdpi.setText(""+metrics.ydpi);
+        textViewDisplayDensityDefault.setText(""+DisplayMetrics.DENSITY_DEFAULT);
+        textViewDisplayDensityLow.setText(""+DisplayMetrics.DENSITY_LOW);
+        textViewDisplayDensityMedium.setText(""+DisplayMetrics.DENSITY_MEDIUM);
+        textViewDisplayDensityHigh.setText(""+DisplayMetrics.DENSITY_HIGH);
+        textViewDisplayHeight.setText(""+metrics.heightPixels);
+        textViewDisplayWidth.setText(""+metrics.widthPixels);
 
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_display, container, false);
-        }
+
+        Timber.d("density: "+metrics.density);
+        Timber.d("densityDpi: " + metrics.densityDpi);
+        Timber.d("scaledDensity: " + metrics.scaledDensity);
+        Timber.d("xdpi: " + metrics.xdpi);
+        Timber.d("ydpi: " + metrics.ydpi);
+
+        Timber.d("** Density reference:");
+        Timber.d("DENSITY_DEFAULT: " + DisplayMetrics.DENSITY_DEFAULT);
+        Timber.d("DENSITY_LOW: " + DisplayMetrics.DENSITY_LOW);
+        Timber.d("DENSITY_MEDIUM: " + DisplayMetrics.DENSITY_MEDIUM);
+        Timber.d("DENSITY_HIGH: " + DisplayMetrics.DENSITY_HIGH);
+
+        Timber.d("** Screen:");
+        Timber.d("heightPixels: " + metrics.heightPixels);
+        Timber.d("widthPixels: "+metrics.widthPixels);
+
+        return view;
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -50,7 +79,7 @@ import timber.log.Timber;
         ((BaseActivity) activity).onSectionAttached(3);
     }
 
-        @Override public void onResume() {
-            super.onResume();
-        }
+    @Override public void onResume() {
+        super.onResume();
     }
+}

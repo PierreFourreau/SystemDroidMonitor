@@ -18,6 +18,31 @@
     <string name="battery">Battery</string>
     <string name="memory">Memory</string>
 
+    <!--Summary fragment-->
+    <string name="summary_os">OS version</string>
+    <string name="summary_api">API level</string>
+    <string name="summary_bootloader">Bootloader version</string>
+    <string name="summary_brand">Brand</string>
+    <string name="summary_device">Device</string>
+    <string name="summary_model">Model</string>
+    <string name="summary_manufacturer">Manufacturer</string>
+    <string name="summary_product">Product</string>
+
+    <!--Display fragment-->
+    <string name="display_density">Density</string>
+    <string name="display_density_dpi">Density Dpi</string>
+    <string name="display_density_scaled">Scaled density</string>
+    <string name="display_xdpi">xdpi</string>
+    <string name="display_ydpi">ydpi</string>
+    <string name="display_density_reference">Density reference</string>
+    <string name="display_density_default">Density default</string>
+    <string name="display_density_low">Density low</string>
+    <string name="display_density_medium">Density medium</string>
+    <string name="display_density_high">Density high</string>
+    <string name="display_screen">Screen</string>
+    <string name="display_height">Height pixels</string>
+    <string name="display_width">Width pixels</string>
+
     <!--Memory fragment-->
     <string name="memory_ram">RAM</string>
     <string name="memory_total_ram">Total memory</string>
@@ -34,6 +59,7 @@
     <string name="memory_available_external">Available external memory size</string>
     <string name="memory_total_external">Total external memory size</string>
 
+    <!--About-->
     <string name="title_activity_about">About</string>
     <string name="about_application_label">Application</string>
     <string name="about_application">System Droid Monitor</string>
