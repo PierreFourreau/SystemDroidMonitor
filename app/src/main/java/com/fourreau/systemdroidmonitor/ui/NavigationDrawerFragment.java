@@ -22,6 +22,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.core.adapter.CustomDrawerAdapter;
+import com.fourreau.systemdroidmonitor.core.model.DrawerItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -60,6 +65,9 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
+    private List dataList;
+    private CustomDrawerAdapter mDrawerAdapter;
+
     public NavigationDrawerFragment() {
     }
 
@@ -88,9 +96,21 @@ public class NavigationDrawerFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    private void addItemsToDataList() {
+        dataList.add(new DrawerItem(getString(R.string.title_section1), R.drawable.ic_dashboard));
+        dataList.add(new DrawerItem(getString(R.string.title_section2), R.drawable.ic_system));
+        dataList.add(new DrawerItem(getString(R.string.title_section3), R.drawable.ic_display));
+        dataList.add(new DrawerItem(getString(R.string.title_section4), R.drawable.ic_battery));
+        dataList.add(new DrawerItem(getString(R.string.title_section5), R.drawable.ic_storage));
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dataList = new ArrayList();
+        addItemsToDataList();
+
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,17 +119,22 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
-                        getString(R.string.title_section4),
-                        getString(R.string.title_section5),
-                }));
+
+        mDrawerAdapter = new CustomDrawerAdapter(getActivity(), R.layout.custom_drawer_item, dataList);
+        mDrawerListView.setAdapter(mDrawerAdapter);
+
+
+//        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+//                getActionBar().getThemedContext(),
+//                android.R.layout.simple_list_item_activated_1,
+//                android.R.id.text1,
+//                new String[]{
+//                        getString(R.string.title_section1),
+//                        getString(R.string.title_section2),
+//                        getString(R.string.title_section3),
+//                        getString(R.string.title_section4),
+//                        getString(R.string.title_section5),
+//                }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
