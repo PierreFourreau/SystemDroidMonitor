@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
-import com.fourreau.systemdroidmonitor.ui.BaseActivity;
+import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
 
 import timber.log.Timber;
 

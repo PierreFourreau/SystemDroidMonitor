@@ -1,6 +1,7 @@
-package com.fourreau.systemdroidmonitor.ui;
+package com.fourreau.systemdroidmonitor.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.fragment.BatteryFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.DisplayFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.MemoryFragment;
+import com.fourreau.systemdroidmonitor.ui.fragment.NavigationDrawerFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.SummaryFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.SystemFragment;
 
@@ -126,10 +128,11 @@ public class BaseActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

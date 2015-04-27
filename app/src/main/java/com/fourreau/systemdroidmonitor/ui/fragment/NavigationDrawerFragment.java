@@ -1,4 +1,4 @@
-package com.fourreau.systemdroidmonitor.ui;
+package com.fourreau.systemdroidmonitor.ui.fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -17,9 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.core.adapter.CustomDrawerAdapter;
@@ -122,19 +120,6 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerAdapter = new CustomDrawerAdapter(getActivity(), R.layout.custom_drawer_item, dataList);
         mDrawerListView.setAdapter(mDrawerAdapter);
-
-
-//        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-//                getActionBar().getThemedContext(),
-//                android.R.layout.simple_list_item_activated_1,
-//                android.R.id.text1,
-//                new String[]{
-//                        getString(R.string.title_section1),
-//                        getString(R.string.title_section2),
-//                        getString(R.string.title_section3),
-//                        getString(R.string.title_section4),
-//                        getString(R.string.title_section5),
-//                }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -275,10 +260,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+//        if (item.getItemId() == R.id.action_example) {
+//            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

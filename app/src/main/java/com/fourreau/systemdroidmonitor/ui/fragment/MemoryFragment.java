@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
-import com.fourreau.systemdroidmonitor.ui.BaseActivity;
+import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
 import com.fourreau.systemdroidmonitor.ui.graph.PieGraph;
 import com.fourreau.systemdroidmonitor.ui.graph.PieSlice;
 import com.fourreau.systemdroidmonitor.util.UiUtils;
