@@ -4,34 +4,65 @@
     android:layout_height="match_parent"
     tools:context="com.fourreau.systemdroidmonitor.ui.fragment.MemoryFragment">
 
-    <com.fourreau.systemdroidmonitor.ui.graph.PieGraph
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/graph" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="left|top">
+        android:padding="3dp">
 
+        <!--Legend-->
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:contentDescription="square legend1"
-                android:background="#AA66CC"
-                android:id="@+id/square1" />
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/used_memory" />
+                android:text="@string/memory_ram" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="square legend1"
+                    android:layout_marginRight="2dp"
+                    android:background="#AA66CC"
+                    android:id="@+id/square1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/memory_used_ram" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="square legend2"
+                    android:background="#FFBB33"
+                    android:layout_marginRight="2dp"
+                    android:id="@+id/square2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/memory_available_ram" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -39,18 +70,112 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:contentDescription="square legend2"
-                android:background="#FFBB33"
-                android:id="@+id/square2" />
-
-            <TextView
+            <!--PieGraph-->
+            <com.fourreau.systemdroidmonitor.ui.graph.PieGraph
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/available_memory" />
-
+                android:layout_height="200dp"
+                android:id="@+id/graph" />
         </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_total_ram"/>
+
+                <TextView
+                    android:id="@+id/textview_memory_total_ram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_total_ram"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_available_ram"/>
+
+                <TextView
+                    android:id="@+id/textview_memory_available_ram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_available_ram"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_used_ram"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_used_ram"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_low_ram"/>
+
+                <TextView
+                    android:id="@+id/textview_memory_low_ram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_low_ram"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_threshold_ram"/>
+
+                <TextView
+                    android:id="@+id/textview_memory_threshold_ram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memory_threshold_ram"/>
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/memory_storage" />
+
     </LinearLayout>
 </FrameLayout>

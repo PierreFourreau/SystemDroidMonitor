@@ -20,9 +20,22 @@
     <string name="battery">Battery</string>
     <string name="memory">Memory</string>
 
+    <!--Memory fragment-->
+    <string name="memory_ram">RAM</string>
+    <string name="memory_total_ram">Total memory</string>
+    <string name="memory_available_ram">Available memory</string>
+    <string name="memory_low_ram">Low memory</string>
+    <string name="memory_used_ram">Used memory</string>
+    <string name="memory_threshold_ram">Threshold memory</string>
 
-    <string name="used_memory">Available memory</string>
-    <string name="available_memory">Used memory</string>
+    <string name="memory_storage">Storage</string>
+    <string name="memory_external">External memory</string>
+    <string name="memory_available_internal">Available internal memory size</string>
+    <string name="memory_total_internal">Total internal memory size</string>
+    <string name="memory_available_external">Available external memory size</string>
+    <string name="memory_total_external">Total external memory size</string>
+
+
 
 
 </resources>

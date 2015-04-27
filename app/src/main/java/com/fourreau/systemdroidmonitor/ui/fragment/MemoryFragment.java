@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.BaseActivity;
@@ -27,11 +28,18 @@ import timber.log.Timber;
  * Created by Pierre on 25/04/2015.
  */
 public class MemoryFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_memory, container, false);
+
+        //get elements
+        TextView textViewRamTotal = (TextView) view.findViewById(R.id.textview_memory_total_ram);
+        TextView textViewRamAvailable = (TextView) view.findViewById(R.id.textview_memory_available_ram);
+        TextView textViewRamLow = (TextView) view.findViewById(R.id.textview_memory_low_ram);
+        TextView textViewRamThreshold = (TextView) view.findViewById(R.id.textview_memory_threshold_ram);
 
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         ActivityManager activityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
@@ -45,12 +53,12 @@ public class MemoryFragment extends Fragment {
 
             PieGraph pg = (PieGraph) view.findViewById(R.id.graph);
             PieSlice slice = new PieSlice();
-            slice.setTitle(getString(R.string.used_memory));
+            slice.setTitle(getString(R.string.memory_used_ram));
             slice.setColor(Color.parseColor("#AA66CC"));
             slice.setValue(mi.totalMem - mi.availMem);
             pg.addSlice(slice);
             slice = new PieSlice();
-            slice.setTitle(getString(R.string.available_memory));
+            slice.setTitle(getString(R.string.memory_available_ram));
             slice.setColor(Color.parseColor("#FFBB33"));
             slice.setValue(mi.availMem);
             pg.addSlice(slice);
@@ -69,6 +77,11 @@ public class MemoryFragment extends Fragment {
         Timber.d("Available external memory size : " + getAvailableExternalMemorySize());
         Timber.d("Total external memory size : " + getTotalExternalMemorySize());
 
+        //set elements
+        textViewRamTotal.setText(UiUtils.humanReadableByteCount(mi.totalMem, true));
+        textViewRamAvailable.setText(UiUtils.humanReadableByteCount(mi.availMem, true));
+        textViewRamLow.setText(Boolean.toString(mi.lowMemory));
+        textViewRamThreshold.setText(UiUtils.humanReadableByteCount(mi.threshold, true));
 
         return view;
     }
