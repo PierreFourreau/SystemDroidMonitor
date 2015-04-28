@@ -27,6 +27,14 @@
     <string name="summary_model">Model</string>
     <string name="summary_manufacturer">Manufacturer</string>
     <string name="summary_product">Product</string>
+    <string name="summary_serial">Hardware Serial</string>
+
+    <!--System fragment-->
+    <string name="system_wifi_label">WiFi</string>
+    <string name="system_wifi_mac">WiFi MAC Address</string>
+    <string name="system_wifi_ipv4">IPV4 address</string>
+    <string name="system_wifi_ipv6">IPV6 address</string>
+    <string name="system_wifi_cpu_label">CPU</string>
 
     <!--Display fragment-->
     <string name="display_density">Density</string>

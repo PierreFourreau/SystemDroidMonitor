@@ -33,7 +33,6 @@ public class BatteryFragment extends Fragment {
 
         //get elements
         textViewBatteryHealth = (TextView) view.findViewById(R.id.textview_battery_health);
-        textViewBatteryIconSmall = (TextView) view.findViewById(R.id.textview_battery_icon_small);
         textViewBatteryLevel = (TextView) view.findViewById(R.id.textview_battery_level);
         textViewBatteryPlugged = (TextView) view.findViewById(R.id.textview_battery_plugged);
         textViewBatteryPresent = (TextView) view.findViewById(R.id.textview_battery_present);
@@ -48,14 +47,13 @@ public class BatteryFragment extends Fragment {
     private BroadcastReceiver batteryInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            int  health= intent.getIntExtra(BatteryManager.EXTRA_HEALTH,0);
-            int  icon_small= intent.getIntExtra(BatteryManager.EXTRA_ICON_SMALL,0);
-            int  level= intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
-            int  plugged= intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,-1);
-            boolean  present= intent.getExtras().getBoolean(BatteryManager.EXTRA_PRESENT);
-            String  technology= intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
+            int  health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH,0);
+            int  level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
+            int  plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,-1);
+            boolean  present = intent.getExtras().getBoolean(BatteryManager.EXTRA_PRESENT);
+            String  technology = intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
             float temperature = ((float) intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,0) / 10);
-            int  voltage= intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE,0);
+            int  voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE,0);
 
             String healthBattery;
             //health
@@ -98,23 +96,21 @@ public class BatteryFragment extends Fragment {
             }
 
             textViewBatteryHealth.setText(healthBattery);
-            textViewBatteryIconSmall.setText(icon_small);
             textViewBatteryLevel.setText(level + " %");
             textViewBatteryPlugged.setText(pluggedType);
             textViewBatteryPresent.setText(""+present);
             textViewBatteryTechnology.setText(technology);
-            textViewBatteryTemperature.setText(""+temperature);
-            textViewBatteryVoltage.setText(""+voltage);
+            textViewBatteryTemperature.setText(""+temperature+ "°");
+            textViewBatteryVoltage.setText(""+voltage + " mV");
 
             Timber.d(
                     "Health: "+healthBattery+"\n"+
-                            "Icon Small:"+icon_small+"\n"+
-                            "Level: "+level+"%\n"+
-                            "Plugged: "+pluggedType+"\n"+
-                            "Present battery: "+present+"\n"+
-                            "Technology: "+technology+"\n"+
-                            "Temperature: "+temperature+"° \n"+
-                            "Voltage: "+voltage+" mV\n");
+                    "Level: "+level+"%\n"+
+                    "Plugged: "+pluggedType+"\n"+
+                    "Present battery: "+present+"\n"+
+                    "Technology: "+technology+"\n"+
+                    "Temperature: "+temperature+"° \n"+
+                    "Voltage: "+voltage+" mV\n");
         }
     };
 

@@ -33,6 +33,7 @@ public class SummaryFragment extends Fragment {
         TextView textViewSummaryModel = (TextView) view.findViewById(R.id.textview_summary_model);
         TextView textViewSummaryManufacturer = (TextView) view.findViewById(R.id.textview_summary_manufacturer);
         TextView textViewSummaryProduct = (TextView) view.findViewById(R.id.textview_summary_product);
+        TextView textViewSummarySerial = (TextView) view.findViewById(R.id.textview_summary_serial);
 
         //set elements
         textViewSummaryOs.setText(Build.VERSION.RELEASE);
@@ -43,6 +44,7 @@ public class SummaryFragment extends Fragment {
         textViewSummaryModel.setText(Build.MODEL);
         textViewSummaryManufacturer.setText(Build.MANUFACTURER);
         textViewSummaryProduct.setText(Build.PRODUCT);
+        textViewSummarySerial.setText(Build.SERIAL);
 
         Timber.d("OS version: " + Build.VERSION.RELEASE);
         Timber.d("API level: " + Build.VERSION.SDK_INT);
@@ -52,8 +54,7 @@ public class SummaryFragment extends Fragment {
         Timber.d("Model : " + Build.MODEL);
         Timber.d("Device: "+Build.DEVICE);
         Timber.d("Product: "+Build.PRODUCT);
-
-//        Timber.d("Uptime : " + UiUtils.sdf.format(new Date(SystemClock.uptimeMillis())));
+        Timber.d("Hardware serial: "+Build.SERIAL);
 
         return view;
     }

@@ -55,24 +55,6 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/battery_icon_small"/>
-
-                            <TextView
-                                android:id="@+id/textview_battery_icon_small"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/battery_icon_small"/>
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
                                 android:layout_marginRight="15dp"
                                 android:text="@string/battery_level"/>
 
@@ -110,6 +92,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="30dp"
                                 android:text="@string/battery_present"/>
 
                             <TextView
@@ -164,7 +147,6 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="25dp"
                                 android:text="@string/battery_voltage"/>
 
                             <TextView
