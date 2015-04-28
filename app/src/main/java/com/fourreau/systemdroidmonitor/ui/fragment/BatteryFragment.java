@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
@@ -21,20 +22,32 @@ import timber.log.Timber;
  * Created by Pierre on 25/04/2015.
  */
 public class BatteryFragment extends Fragment {
+
+    private  TextView textViewBatteryHealth, textViewBatteryIconSmall, textViewBatteryLevel, textViewBatteryPlugged, textViewBatteryPresent, textViewBatteryTechnology, textViewBatteryTemperature, textViewBatteryVoltage;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().registerReceiver(this.batteryInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
+        View view = inflater.inflate(R.layout.fragment_battery, container, false);
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_battery, container, false);
+        //get elements
+        textViewBatteryHealth = (TextView) view.findViewById(R.id.textview_battery_health);
+        textViewBatteryIconSmall = (TextView) view.findViewById(R.id.textview_battery_icon_small);
+        textViewBatteryLevel = (TextView) view.findViewById(R.id.textview_battery_level);
+        textViewBatteryPlugged = (TextView) view.findViewById(R.id.textview_battery_plugged);
+        textViewBatteryPresent = (TextView) view.findViewById(R.id.textview_battery_present);
+        textViewBatteryTechnology = (TextView) view.findViewById(R.id.textview_battery_technology);
+        textViewBatteryTemperature = (TextView) view.findViewById(R.id.textview_battery_temperature);
+        textViewBatteryVoltage = (TextView) view.findViewById(R.id.textview_battery_voltage);
+
+
+        return view;
     }
 
     private BroadcastReceiver batteryInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
             int  health= intent.getIntExtra(BatteryManager.EXTRA_HEALTH,0);
             int  icon_small= intent.getIntExtra(BatteryManager.EXTRA_ICON_SMALL,0);
             int  level= intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
@@ -49,7 +62,7 @@ public class BatteryFragment extends Fragment {
             switch(health) {
                 case BatteryManager.BATTERY_HEALTH_GOOD:
                     healthBattery = "Good";
-                break;
+                    break;
                 case BatteryManager.BATTERY_HEALTH_OVERHEAT:
                     healthBattery = "Overheating";
                     break;
@@ -84,6 +97,15 @@ public class BatteryFragment extends Fragment {
                     break;
             }
 
+            textViewBatteryHealth.setText(healthBattery);
+            textViewBatteryIconSmall.setText(icon_small);
+            textViewBatteryLevel.setText(level + " %");
+            textViewBatteryPlugged.setText(pluggedType);
+            textViewBatteryPresent.setText(""+present);
+            textViewBatteryTechnology.setText(technology);
+            textViewBatteryTemperature.setText(""+temperature);
+            textViewBatteryVoltage.setText(""+voltage);
+
             Timber.d(
                     "Health: "+healthBattery+"\n"+
                             "Icon Small:"+icon_small+"\n"+
@@ -93,7 +115,7 @@ public class BatteryFragment extends Fragment {
                             "Technology: "+technology+"\n"+
                             "Temperature: "+temperature+"° \n"+
                             "Voltage: "+voltage+" mV\n");
-                    }
+        }
     };
 
     @Override

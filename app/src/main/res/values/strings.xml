@@ -52,6 +52,18 @@
     <string name="memory_used_ram">Used memory</string>
     <string name="memory_threshold_ram">Threshold memory</string>
 
+    <!--Battery fragment-->
+    <string name="battery_health">Health</string>
+    <string name="battery_icon_small">Icon Small</string>
+    <string name="battery_level">Level</string>
+    <string name="battery_plugged">Plugged</string>
+    <string name="battery_present">Present battery</string>
+    <string name="battery_technology">Technology</string>
+    <string name="battery_temperature">Temperature</string>
+    <string name="battery_voltage">Voltage</string>
+
+
+    <!--Storage fragment-->
     <string name="memory_storage">Storage</string>
     <string name="memory_external">External memory</string>
     <string name="memory_available_internal">Available internal memory size</string>
