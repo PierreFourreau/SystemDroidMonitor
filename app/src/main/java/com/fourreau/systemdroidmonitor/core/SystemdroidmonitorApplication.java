@@ -2,8 +2,10 @@ package com.fourreau.systemdroidmonitor.core;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.fourreau.systemdroidmonitor.BuildConfig;
 
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 /**
@@ -13,6 +15,7 @@ public class SystemdroidmonitorApplication extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         //init logger
         if (BuildConfig.DEBUG) {
