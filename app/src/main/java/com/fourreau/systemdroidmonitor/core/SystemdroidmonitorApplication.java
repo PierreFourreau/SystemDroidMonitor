@@ -30,6 +30,7 @@ public class SystemdroidmonitorApplication extends Application {
     private static class CrashReportingTree extends Timber.HollowTree {
         @Override public void i(String message, Object... args) {
             // TODO e.g., Crashlytics.log(String.format(message, args));
+            Crashlytics.log(message);
         }
 
         @Override public void i(Throwable t, String message, Object... args) {
@@ -44,6 +45,7 @@ public class SystemdroidmonitorApplication extends Application {
             e(message, args);
 
             // TODO e.g., Crashlytics.logException(t);
+            Crashlytics.logException(t);
         }
     }
 }
