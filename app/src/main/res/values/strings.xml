@@ -6,6 +6,7 @@
     <string name="title_section3">Display</string>
     <string name="title_section4">Battery</string>
     <string name="title_section5">Memory</string>
+    <string name="title_section6">Running apps</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -37,8 +38,7 @@
     <string name="system_wifi_cpu_label">CPU</string>
 
     <!--Display fragment-->
-    <string name="display_density">Density</string>
-    <string name="display_density_dpi">Density Dpi</string>
+    <string name="display_density_dpi">Density</string>
     <string name="display_density_scaled">Scaled density</string>
     <string name="display_xdpi">xdpi</string>
     <string name="display_ydpi">ydpi</string>
@@ -61,6 +61,7 @@
     <string name="memory_threshold_ram">Threshold memory</string>
 
     <!--Battery fragment-->
+    <string name="battery_infos">Informations</string>
     <string name="battery_health">Health</string>
     <string name="battery_icon_small">Icon Small</string>
     <string name="battery_level">Level</string>
@@ -69,7 +70,8 @@
     <string name="battery_technology">Technology</string>
     <string name="battery_temperature">Temperature</string>
     <string name="battery_voltage">Voltage</string>
-
+    <string name="battery_charged">% charged</string>
+    <string name="battery_remaining">% remaining</string>
 
     <!--Storage fragment-->
     <string name="memory_storage">Storage</string>
@@ -78,6 +80,9 @@
     <string name="memory_total_internal">Total internal memory size</string>
     <string name="memory_available_external">Available external memory size</string>
     <string name="memory_total_external">Total external memory size</string>
+
+    <!--Running application fragment-->
+    <string name="apps_description">Description</string>
 
     <!--About-->
     <string name="title_activity_about">About</string>
@@ -90,4 +95,5 @@
     <string name="about_more_label">More</string>
     <string name="about_more1">If you like this app, please rate it.</string>
     <string name="about_more2">If you found errors in the app, please report me and the app will be updated as soon as possible.</string>
+    <string name="title_activity_running_apps">RunningAppsActivity</string>
 </resources>

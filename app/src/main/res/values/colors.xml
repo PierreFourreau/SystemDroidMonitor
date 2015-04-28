@@ -13,4 +13,7 @@
         <item>#5CC9CB</item>
         <item>#CAF1E7</item>
     </string-array>
+    <color name="frame">#b4b4b4</color>
+    <color name="frame_solid">#eee</color>
+    <color name="frame_background">#bcbcbc</color>
 </resources>

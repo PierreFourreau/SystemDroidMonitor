@@ -64,8 +64,8 @@ public class MemoryFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= 16) {
             // percentage can be calculated for API 16+
             Long percentageAvailaible = (long) ((float) mi.availMem / mi.totalMem * 100);
-            Timber.d("percent available : " + percentageAvailaible + "%");
 
+            Timber.d("percent available : " + percentageAvailaible + "%");
             Timber.d("Total memory" + UiUtils.humanReadableByteCount(mi.totalMem, true));
 
             PieSlice slice = new PieSlice();

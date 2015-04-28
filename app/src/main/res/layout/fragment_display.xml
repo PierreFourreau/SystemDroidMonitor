@@ -43,23 +43,6 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/display_density"/>
-
-                            <TextView
-                                android:id="@+id/textview_display_density"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/display_density"/>
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
                                 android:text="@string/display_density_dpi"/>
 
                             <TextView

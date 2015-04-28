@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.ui.fragment.ApplicationsFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.BatteryFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.DisplayFragment;
 import com.fourreau.systemdroidmonitor.ui.fragment.MemoryFragment;
@@ -73,6 +74,9 @@ public class BaseActivity extends ActionBarActivity
             case 4:
                 fragment = new MemoryFragment();
                 break;
+            case 5:
+                fragment = new ApplicationsFragment();
+                break;
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
@@ -95,6 +99,9 @@ public class BaseActivity extends ActionBarActivity
                 break;
             case 5:
                 mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section6);
                 break;
         }
     }

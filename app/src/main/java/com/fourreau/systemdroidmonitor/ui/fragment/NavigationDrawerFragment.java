@@ -100,6 +100,7 @@ public class NavigationDrawerFragment extends Fragment {
         dataList.add(new DrawerItem(getString(R.string.title_section3), R.drawable.ic_display));
         dataList.add(new DrawerItem(getString(R.string.title_section4), R.drawable.ic_battery));
         dataList.add(new DrawerItem(getString(R.string.title_section5), R.drawable.ic_storage));
+        dataList.add(new DrawerItem(getString(R.string.title_section6), R.drawable.ic_applications));
     }
 
     @Override

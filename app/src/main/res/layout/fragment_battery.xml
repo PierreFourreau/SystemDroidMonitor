@@ -24,6 +24,13 @@
                     android:background="@android:drawable/dialog_holo_light_frame"
                     android:padding="15dp" >
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="3dp"
+                        android:textStyle="bold"
+                        android:text="@string/battery_infos" />
+
                     <TableLayout
                         android:id="@+id/tableLayout1"
                         android:layout_width="fill_parent"
@@ -44,25 +51,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/battery_health"/>
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:text="@string/battery_level"/>
-
-                            <TextView
-                                android:id="@+id/textview_battery_level"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/battery_level"/>
                         </TableRow>
 
                         <TableRow
@@ -156,6 +144,53 @@
                                 android:text="@string/battery_voltage"/>
                         </TableRow>
                     </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+
+                <!--Level-->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:padding="15dp" >
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:paddingBottom="10dp"
+                            android:textStyle="bold"
+                            android:text="@string/battery_level"/>
+
+                        <TextView
+                            android:id="@+id/textview_battery_level"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:text="@string/battery_level"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--PieGraph-->
+                        <com.fourreau.systemdroidmonitor.ui.graph.PieGraph
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:id="@+id/graphBattery" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

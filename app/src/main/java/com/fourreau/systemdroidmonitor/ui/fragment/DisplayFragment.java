@@ -25,7 +25,6 @@ public class DisplayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_display, container, false);
 
         //get elements
-        TextView textViewDisplayDensity = (TextView) view.findViewById(R.id.textview_display_density);
         TextView textViewDisplayDensityDpi = (TextView) view.findViewById(R.id.textview_display_density_dpi);
         TextView textViewDisplayDensityScaled = (TextView) view.findViewById(R.id.textview_display_density_scaled);
         TextView textViewDisplayDensityXdpi = (TextView) view.findViewById(R.id.textview_display_xdpi);
@@ -41,17 +40,16 @@ public class DisplayFragment extends Fragment {
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         //set elements
-        textViewDisplayDensity.setText(""+metrics.density);
-        textViewDisplayDensityDpi.setText(""+metrics.densityDpi);
+        textViewDisplayDensityDpi.setText(""+metrics.densityDpi+" dpi");
         textViewDisplayDensityScaled.setText(""+metrics.scaledDensity);
-        textViewDisplayDensityXdpi.setText(""+metrics.xdpi);
-        textViewDisplayDensityYdpi.setText(""+metrics.ydpi);
+        textViewDisplayDensityXdpi.setText(""+metrics.xdpi+" dpi");
+        textViewDisplayDensityYdpi.setText(""+metrics.ydpi+" dpi");
         textViewDisplayDensityDefault.setText(""+DisplayMetrics.DENSITY_DEFAULT);
         textViewDisplayDensityLow.setText(""+DisplayMetrics.DENSITY_LOW);
         textViewDisplayDensityMedium.setText(""+DisplayMetrics.DENSITY_MEDIUM);
         textViewDisplayDensityHigh.setText(""+DisplayMetrics.DENSITY_HIGH);
-        textViewDisplayHeight.setText(""+metrics.heightPixels);
-        textViewDisplayWidth.setText(""+metrics.widthPixels);
+        textViewDisplayHeight.setText(""+metrics.heightPixels+" px");
+        textViewDisplayWidth.setText(""+metrics.widthPixels+" px");
 
 
         Timber.d("density: "+metrics.density);

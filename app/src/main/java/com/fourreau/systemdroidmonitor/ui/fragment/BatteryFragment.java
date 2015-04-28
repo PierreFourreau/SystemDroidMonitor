@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
+import com.fourreau.systemdroidmonitor.ui.graph.PieGraph;
+import com.fourreau.systemdroidmonitor.ui.graph.PieSlice;
 
 import timber.log.Timber;
 
@@ -24,6 +27,8 @@ import timber.log.Timber;
 public class BatteryFragment extends Fragment {
 
     private  TextView textViewBatteryHealth, textViewBatteryIconSmall, textViewBatteryLevel, textViewBatteryPlugged, textViewBatteryPresent, textViewBatteryTechnology, textViewBatteryTemperature, textViewBatteryVoltage;
+    private PieGraph pg;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class BatteryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_battery, container, false);
 
         //get elements
+        pg = (PieGraph) view.findViewById(R.id.graphBattery);
         textViewBatteryHealth = (TextView) view.findViewById(R.id.textview_battery_health);
         textViewBatteryLevel = (TextView) view.findViewById(R.id.textview_battery_level);
         textViewBatteryPlugged = (TextView) view.findViewById(R.id.textview_battery_plugged);
@@ -39,7 +45,6 @@ public class BatteryFragment extends Fragment {
         textViewBatteryTechnology = (TextView) view.findViewById(R.id.textview_battery_technology);
         textViewBatteryTemperature = (TextView) view.findViewById(R.id.textview_battery_temperature);
         textViewBatteryVoltage = (TextView) view.findViewById(R.id.textview_battery_voltage);
-
 
         return view;
     }
@@ -102,6 +107,20 @@ public class BatteryFragment extends Fragment {
             textViewBatteryTechnology.setText(technology);
             textViewBatteryTemperature.setText(""+temperature+ "°");
             textViewBatteryVoltage.setText(""+voltage + " mV");
+
+            PieSlice slice = new PieSlice();
+            slice.setTitle(getString(R.string.battery_charged));
+            slice.setColor(Color.parseColor("#AA66CC"));
+            slice.setValue(level);
+            pg.addSlice(slice);
+            //if battery charged, there is just one slice
+            if(level != 100) {
+                slice = new PieSlice();
+                slice.setTitle(getString(R.string.battery_remaining));
+                slice.setColor(Color.parseColor("#FFBB33"));
+                slice.setValue(100 - level);
+                pg.addSlice(slice);
+            }
 
             Timber.d(
                     "Health: "+healthBattery+"\n"+

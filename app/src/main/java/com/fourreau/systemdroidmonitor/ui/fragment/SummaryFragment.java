@@ -1,6 +1,11 @@
 package com.fourreau.systemdroidmonitor.ui.fragment;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,16 +17,21 @@ import android.widget.TextView;
 import com.fourreau.systemdroidmonitor.R;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import timber.log.Timber;
 
 /**
  * Created by Pierre on 25/04/2015.
  */
 public class SummaryFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
 
         //get elements
