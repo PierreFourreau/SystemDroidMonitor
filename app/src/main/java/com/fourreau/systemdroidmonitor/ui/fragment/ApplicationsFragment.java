@@ -32,15 +32,40 @@ import timber.log.Timber;
  */
 public class ApplicationsFragment extends ListFragment {
 
-    private List<ListViewItemApp> mItems;
+    private List<ListViewItemApp> mItems = new ArrayList<ListViewItemApp>();;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        RunningAppsTask mTask = new RunningAppsTask(getActivity().getApplicationContext());
-        mTask.execute();
+        ActivityManager am = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
 
+        String[] activePackages;
+//            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
+        activePackages = getActivePackages(am);
+//            } else {
+//                activePackages = getActivePackagesCompat(am);
+//            }
+        if (activePackages != null) {
+            for (String activePackage : activePackages) {
+                try {
+                    Drawable icon = getActivity().getPackageManager().getApplicationIcon(activePackage);
+//                        getActivity().getPackageManager().getApplicationLabel()
+                    ApplicationInfo appInfo = getActivity().getPackageManager().getApplicationInfo(activePackage, 0x00000080);
+                    mItems.add(new ListViewItemApp(icon, getActivity().getPackageManager().getApplicationLabel(appInfo).toString(), activePackage));
+                }
+                catch ( PackageManager.NameNotFoundException e ) {
+                    Timber.e("ApplicationsFragment:PackageManager.NameNotFoundException", e.toString());
+                }
+            }
+        }
+        setListAdapter(new ListViewAppsAdapter(getActivity(), mItems));
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        ListViewItemApp item = mItems.get(position);
+        Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -56,83 +81,22 @@ public class ApplicationsFragment extends ListFragment {
         ((BaseActivity) activity).onSectionAttached(1);
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
-        ListViewItemApp item = mItems.get(position);
-        Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
+    String[] getActivePackagesCompat(ActivityManager mActivityManager) {
+        final List<ActivityManager.RunningTaskInfo> taskInfo = mActivityManager.getRunningTasks(1);
+        final ComponentName componentName = taskInfo.get(0).topActivity;
+        final String[] activePackages = new String[1];
+        activePackages[0] = componentName.getPackageName();
+        return activePackages;
     }
 
-    public class RunningAppsTask extends AsyncTask<String, Void, List<ListViewItemApp>> {
-
-        private Context mContext;
-        List<ListViewItemApp> mItems = new ArrayList<ListViewItemApp>();
-
-        public RunningAppsTask(Context context){
-            this.mContext = context;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected List<ListViewItemApp> doInBackground(String... params) {
-
-
-            ActivityManager am = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
-
-            String[] activePackages;
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
-                activePackages = getActivePackages(am);
-            } else {
-                activePackages = getActivePackagesCompat(am);
+    String[] getActivePackages(ActivityManager mActivityManager) {
+        final Set<String> activePackages = new HashSet<String>();
+        final List<ActivityManager.RunningAppProcessInfo> processInfos = mActivityManager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo processInfo : processInfos) {
+            if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                activePackages.addAll(Arrays.asList(processInfo.pkgList));
             }
-            if (activePackages != null) {
-                for (String activePackage : activePackages) {
-                    try {
-                        Drawable icon = getActivity().getPackageManager().getApplicationIcon(activePackage);
-//                        getActivity().getPackageManager().getApplicationLabel()
-                        ApplicationInfo appInfo = getActivity().getPackageManager().getApplicationInfo(activePackage, 0x00000080);
-                        mItems.add(new ListViewItemApp(icon, getActivity().getPackageManager().getApplicationLabel(appInfo).toString(), activePackage));
-                    }
-                    catch ( PackageManager.NameNotFoundException e ) {
-                       Timber.e("ApplicationsFragment:PackageManager.NameNotFoundException", e.toString());
-                    }
-                }
-            }
-
-            return mItems;
         }
-
-        @Override
-        protected void onPostExecute(List<ListViewItemApp> apps) {
-
-            // initialize and set the list adapter
-           setListAdapter(new ListViewAppsAdapter(mContext, mItems));
-
-            Toast.makeText(mContext, "Number of running applications : " + apps.size(), Toast.LENGTH_LONG).show();
-        }
-
-        String[] getActivePackagesCompat(ActivityManager mActivityManager) {
-            final List<ActivityManager.RunningTaskInfo> taskInfo = mActivityManager.getRunningTasks(1);
-            final ComponentName componentName = taskInfo.get(0).topActivity;
-            final String[] activePackages = new String[1];
-            activePackages[0] = componentName.getPackageName();
-            return activePackages;
-        }
-
-        String[] getActivePackages(ActivityManager mActivityManager) {
-            final Set<String> activePackages = new HashSet<String>();
-            final List<ActivityManager.RunningAppProcessInfo> processInfos = mActivityManager.getRunningAppProcesses();
-            for (ActivityManager.RunningAppProcessInfo processInfo : processInfos) {
-                if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                    activePackages.addAll(Arrays.asList(processInfo.pkgList));
-                }
-            }
-            return activePackages.toArray(new String[activePackages.size()]);
-        }
-
+        return activePackages.toArray(new String[activePackages.size()]);
     }
 }

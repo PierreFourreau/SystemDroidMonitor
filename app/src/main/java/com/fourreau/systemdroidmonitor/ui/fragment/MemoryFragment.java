@@ -29,6 +29,8 @@ import timber.log.Timber;
  */
 public class MemoryFragment extends Fragment {
 
+    private PieGraph pg;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,14 +38,14 @@ public class MemoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_memory, container, false);
 
         //get elements
-        PieGraph pg = (PieGraph) view.findViewById(R.id.graph);
+        pg = (PieGraph) view.findViewById(R.id.graph);
         //ram
         TextView textViewRamTotalLabel = (TextView) view.findViewById(R.id.textview_memory_used_ram_label);
         TextView textViewRamUsedLabel = (TextView) view.findViewById(R.id.textview_memory_used_ram_label);
         TextView textViewRamTotal = (TextView) view.findViewById(R.id.textview_memory_total_ram);
         TextView textViewRamAvailable = (TextView) view.findViewById(R.id.textview_memory_available_ram);
-        TextView textview_memory_percentage_ram_label = (TextView) view.findViewById(R.id.textview_memory_percentage_ram_label);
-        TextView textview_memory_percentage_ram = (TextView) view.findViewById(R.id.textview_memory_percentage_ram);
+        TextView textViewRamPercentageLabel = (TextView) view.findViewById(R.id.textview_memory_percentage_ram_label);
+        TextView textviewRamPercentage= (TextView) view.findViewById(R.id.textview_memory_percentage_ram);
 
         TextView textViewRamUsed = (TextView) view.findViewById(R.id.textview_memory_used_ram);
         TextView textViewRamLow = (TextView) view.findViewById(R.id.textview_memory_low_ram);
@@ -82,12 +84,12 @@ public class MemoryFragment extends Fragment {
             //ram
             textViewRamTotal.setText(UiUtils.humanReadableByteCount(mi.totalMem, true));
             textViewRamUsed.setText(UiUtils.humanReadableByteCount(mi.totalMem - mi.availMem, true));
-            textview_memory_percentage_ram.setText(percentageAvailaible + " %");
+            textviewRamPercentage.setText(percentageAvailaible + " %");
         }
         else {
             pg.setVisibility(View.GONE);
-            textview_memory_percentage_ram_label.setVisibility(View.GONE);
-            textview_memory_percentage_ram.setVisibility(View.GONE);
+            textViewRamPercentageLabel.setVisibility(View.GONE);
+            textviewRamPercentage.setVisibility(View.GONE);
             textViewRamTotalLabel.setVisibility(View.GONE);
             textViewRamUsedLabel.setVisibility(View.GONE);
             textViewRamTotal.setVisibility(View.GONE);
