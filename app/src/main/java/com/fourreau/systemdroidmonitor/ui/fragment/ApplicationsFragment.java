@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -49,13 +50,26 @@ public class ApplicationsFragment extends ListFragment {
         if (activePackages != null) {
             for (String activePackage : activePackages) {
                 try {
-                    Drawable icon = getActivity().getPackageManager().getApplicationIcon(activePackage);
-//                        getActivity().getPackageManager().getApplicationLabel()
-                    ApplicationInfo appInfo = getActivity().getPackageManager().getApplicationInfo(activePackage, 0x00000080);
-                    mItems.add(new ListViewItemApp(icon, getActivity().getPackageManager().getApplicationLabel(appInfo).toString(), activePackage));
+                    PackageManager pm = getActivity().getPackageManager();
+                    if(pm != null) {
+                        Drawable icon = pm.getApplicationIcon(activePackage);
+                        ApplicationInfo appInfo = pm.getApplicationInfo(activePackage, 0x00000080);
+                        if(appInfo != null) {
+                            CharSequence  appLabelChar = pm.getApplicationLabel(appInfo);
+                            if(appLabelChar != null) {
+                                String appLabel = appLabelChar.toString();
+                                if(appLabel == null) {
+                                    appLabel = "Not found";
+                                }
+                                mItems.add(new ListViewItemApp(icon, appLabel, activePackage));
+                            }
+                        }
+                    }
                 }
                 catch ( PackageManager.NameNotFoundException e ) {
                     Timber.e("ApplicationsFragment:PackageManager.NameNotFoundException", e.toString());
+                } catch (Resources.NotFoundException e) {
+                    Timber.e("ApplicationsFragment:Resources.NotFoundException", e.toString());
                 }
             }
         }

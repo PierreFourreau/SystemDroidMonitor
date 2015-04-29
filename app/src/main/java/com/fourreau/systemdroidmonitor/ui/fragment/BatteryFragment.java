@@ -28,7 +28,7 @@ public class BatteryFragment extends Fragment {
 
     private  TextView textViewBatteryHealth, textViewBatteryLevel, textViewBatteryPlugged, textViewBatteryPresent, textViewBatteryTechnology, textViewBatteryTemperature, textViewBatteryVoltage;
     private PieGraph pg;
-
+    private String batteryChargedLabel, batteryRemainingLabel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class BatteryFragment extends Fragment {
         textViewBatteryTemperature = (TextView) view.findViewById(R.id.textview_battery_temperature);
         textViewBatteryVoltage = (TextView) view.findViewById(R.id.textview_battery_voltage);
 
+        batteryChargedLabel = getString(R.string.battery_charged);
+        batteryRemainingLabel = getString(R.string.battery_remaining);
         return view;
     }
 
@@ -109,27 +111,27 @@ public class BatteryFragment extends Fragment {
             textViewBatteryVoltage.setText(""+voltage + " mV");
 
             PieSlice slice = new PieSlice();
-            slice.setTitle(getString(R.string.battery_charged));
+            slice.setTitle(batteryChargedLabel);
             slice.setColor(Color.parseColor("#AA66CC"));
             slice.setValue(level);
             pg.addSlice(slice);
             //if battery charged, there is just one slice
             if(level != 100) {
                 slice = new PieSlice();
-                slice.setTitle(getString(R.string.battery_remaining));
+                slice.setTitle(batteryRemainingLabel);
                 slice.setColor(Color.parseColor("#FFBB33"));
                 slice.setValue(100 - level);
                 pg.addSlice(slice);
             }
 
             Timber.d(
-                    "Health: "+healthBattery+"\n"+
-                    "Level: "+level+"%\n"+
-                    "Plugged: "+pluggedType+"\n"+
-                    "Present battery: "+present+"\n"+
-                    "Technology: "+technology+"\n"+
-                    "Temperature: "+temperature+"° \n"+
-                    "Voltage: "+voltage+" mV\n");
+                    "Health: "+healthBattery+"-"+
+                    "Level: "+level+"%-"+
+                    "Plugged: "+pluggedType+"-"+
+                    "Present battery: "+present+"-"+
+                    "Technology: "+technology+"-"+
+                    "Temperature: "+temperature+"° -"+
+                    "Voltage: "+voltage+" mV");
         }
     };
 

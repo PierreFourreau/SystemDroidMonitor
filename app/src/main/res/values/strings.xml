@@ -94,6 +94,6 @@
     <string name="about_contact">fourreau.pierre@gmail.com</string>
     <string name="about_more_label">More</string>
     <string name="about_more1">If you like this app, please rate it.</string>
-    <string name="about_more2">If you found errors in the app, please report me and the app will be updated as soon as possible.</string>
+    <string name="about_more2">If you found errors in the app, please report them to me and the app will be updated as soon as possible. Thanks.</string>
     <string name="title_activity_running_apps">RunningAppsActivity</string>
 </resources>
