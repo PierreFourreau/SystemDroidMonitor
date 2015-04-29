@@ -26,7 +26,7 @@ import timber.log.Timber;
  */
 public class BatteryFragment extends Fragment {
 
-    private  TextView textViewBatteryHealth, textViewBatteryIconSmall, textViewBatteryLevel, textViewBatteryPlugged, textViewBatteryPresent, textViewBatteryTechnology, textViewBatteryTemperature, textViewBatteryVoltage;
+    private  TextView textViewBatteryHealth, textViewBatteryLevel, textViewBatteryPlugged, textViewBatteryPresent, textViewBatteryTechnology, textViewBatteryTemperature, textViewBatteryVoltage;
     private PieGraph pg;
 
     @Override

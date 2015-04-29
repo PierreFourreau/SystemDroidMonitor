@@ -64,8 +64,8 @@ public class ApplicationsFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        ListViewItemApp item = mItems.get(position);
-        Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
+//        ListViewItemApp item = mItems.get(position);
+//        Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -78,7 +78,7 @@ public class ApplicationsFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((BaseActivity) activity).onSectionAttached(1);
+        ((BaseActivity) activity).onSectionAttached(6);
     }
 
     String[] getActivePackagesCompat(ActivityManager mActivityManager) {
