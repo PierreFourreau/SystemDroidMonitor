@@ -7,8 +7,11 @@ No ads.
 
 # Changelog
 
-To complete
+1.0.0 : First release
 
 # Permission Explanation
 
-To complete
+ACCESS_WIFI_STATE
+CHANGE_WIFI_STATE
+INTERNET
+ACCESS_NETWORK_STATE
