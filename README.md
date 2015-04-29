@@ -12,6 +12,10 @@ No ads.
 # Permission Explanation
 
 ACCESS_WIFI_STATE
+
 CHANGE_WIFI_STATE
+
 INTERNET
+
 ACCESS_NETWORK_STATE
+
