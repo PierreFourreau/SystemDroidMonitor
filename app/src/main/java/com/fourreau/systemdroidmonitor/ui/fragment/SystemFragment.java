@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.core.SystemdroidmonitorApplication;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
 import com.fourreau.systemdroidmonitor.util.UiUtils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.apache.http.conn.util.InetAddressUtils;
 
@@ -39,6 +42,13 @@ public class SystemFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_system, container, false);
+
+        // Get tracker.
+        Tracker t = ((SystemdroidmonitorApplication) getActivity().getApplication()).getTracker(SystemdroidmonitorApplication.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        t.setScreenName("SystemFragment");
+        t.send(new HitBuilders.ScreenViewBuilder().build());
 
         // Wifi Service
         WifiManager manager = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);

@@ -15,10 +15,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.core.SystemdroidmonitorApplication;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
 import com.fourreau.systemdroidmonitor.ui.graph.PieGraph;
 import com.fourreau.systemdroidmonitor.ui.graph.PieSlice;
 import com.fourreau.systemdroidmonitor.util.UiUtils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.io.File;
 
@@ -36,6 +39,12 @@ public class MemoryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_memory, container, false);
+        // Get tracker.
+        Tracker t = ((SystemdroidmonitorApplication) getActivity().getApplication()).getTracker(SystemdroidmonitorApplication.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        t.setScreenName("MemoryFragment");
+        t.send(new HitBuilders.ScreenViewBuilder().build());
 
         //get elements
         pg = (PieGraph) view.findViewById(R.id.graph);

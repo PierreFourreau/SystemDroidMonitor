@@ -15,7 +15,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.core.SystemdroidmonitorApplication;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -33,6 +36,13 @@ public class SummaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
+
+        // Get tracker.
+        Tracker t = ((SystemdroidmonitorApplication) getActivity().getApplication()).getTracker(SystemdroidmonitorApplication.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        t.setScreenName("SummaryFragment");
+        t.send(new HitBuilders.ScreenViewBuilder().build());
 
         //get elements
         TextView textViewSummaryOs = (TextView) view.findViewById(R.id.textview_summary_os);

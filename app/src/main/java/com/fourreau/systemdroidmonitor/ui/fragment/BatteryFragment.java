@@ -15,9 +15,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fourreau.systemdroidmonitor.R;
+import com.fourreau.systemdroidmonitor.core.SystemdroidmonitorApplication;
 import com.fourreau.systemdroidmonitor.ui.activity.BaseActivity;
 import com.fourreau.systemdroidmonitor.ui.graph.PieGraph;
 import com.fourreau.systemdroidmonitor.ui.graph.PieSlice;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import timber.log.Timber;
 
@@ -32,6 +35,13 @@ public class BatteryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Get tracker.
+        Tracker t = ((SystemdroidmonitorApplication) getActivity().getApplication()).getTracker(SystemdroidmonitorApplication.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        t.setScreenName("BatteryFragment");
+        t.send(new HitBuilders.ScreenViewBuilder().build());
+
         getActivity().registerReceiver(this.batteryInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         View view = inflater.inflate(R.layout.fragment_battery, container, false);
