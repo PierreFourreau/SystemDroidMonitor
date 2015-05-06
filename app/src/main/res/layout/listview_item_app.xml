@@ -16,8 +16,8 @@
         <!-- the icon view -->
         <ImageView android:id="@+id/ivIcon"
             android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="5dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/apps_description"
             android:scaleType="fitXY"

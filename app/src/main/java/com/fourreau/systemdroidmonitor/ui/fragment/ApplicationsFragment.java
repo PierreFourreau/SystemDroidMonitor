@@ -8,13 +8,10 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.fourreau.systemdroidmonitor.core.adapter.ListViewAppsAdapter;
 import com.fourreau.systemdroidmonitor.core.model.ListViewItemApp;
@@ -33,7 +30,7 @@ import timber.log.Timber;
  */
 public class ApplicationsFragment extends ListFragment {
 
-    private List<ListViewItemApp> mItems = new ArrayList<ListViewItemApp>();;
+    private List<ListViewItemApp> mItems = new ArrayList<ListViewItemApp>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
