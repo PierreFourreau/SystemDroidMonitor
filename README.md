@@ -13,6 +13,8 @@ No ads.
 
 1.0.2 : Navigation battery icon problem on tablet
 
+1.0.3 : Correct bug when getting informations of external storage
+
 
 # Permission Explanation
 
@@ -24,3 +26,4 @@ INTERNET
 
 ACCESS_NETWORK_STATE
 
+WRITE_EXTERNAL_STORAGE
