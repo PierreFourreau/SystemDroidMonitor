@@ -8,7 +8,11 @@ No ads.
 # Changelog
 
 1.0.0 : First release
+
 1.0.1 : Add Google Analytics
+
+1.0.2 : Navigation battery icon problem on tablet
+
 
 # Permission Explanation
 
